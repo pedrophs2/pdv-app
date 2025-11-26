@@ -1,5 +1,6 @@
 import { Component, HostBinding, Input, HostListener, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuItem } from 'src/app/model/MenuItem';
 
 @Component({
     selector: '[appSidebar]',
@@ -11,9 +12,33 @@ import { Router } from '@angular/router';
 // tslint:disable: curly variable-name
 export class SidebarComponent {
 
+    menuItems: MenuItem[] = [
+        {
+            label: 'Dashboard',
+            icon: 'home',
+            path: 'home'
+        },
+        {
+            label: 'Produto',
+            icon: 'splitscreen',
+            path: 'product-list'
+        },
+        {
+            label: 'PDV',
+            icon: 'point_of_sale',
+            path: 'sale'
+        },
+        {
+            label: 'Vendas',
+            icon: 'attach_money',
+            path: 'sales'
+        }
+    ]
+
     @HostBinding('class.c-sidebar-show') _alwaysShow = false;
     @HostBinding('class.c-sidebar-lg-show') _show = true;
     private _enableClickOutside = false;
+
     @Input()
     @HostBinding('class.c-sidebar-fixed') fixed = true;
 

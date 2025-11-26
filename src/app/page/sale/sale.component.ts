@@ -30,19 +30,23 @@ export class SaleComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private saleService: SaleService,
-    private formBilder: FormBuilder,
+    private formBuilder: FormBuilder,
     private snackBar: MatSnackBar,
     public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
     this.montarFormulario();
+    this.formAddItem.get('barcode')!.valueChanges.subscribe(barcode => {
+      this.productService.findProductByBarcodeActive(barcode).subscribe(product => {
+        this.statusCaixa = product.name
+      })
+    })
   }
 
   montarFormulario() {
-    this.formAddItem = this.formBilder.group({
-      //validando os dados do formulário
-      id: [null, [Validators.required, Validators.maxLength(13), Validators.minLength(1)]],
+    this.formAddItem = this.formBuilder.group({
+      barcode: [null, [Validators.required, Validators.minLength(1)]],
       quantidade: [null, [Validators.required, Validators.maxLength(50)]],
     })
   }
@@ -104,7 +108,7 @@ export class SaleComponent implements OnInit {
 
   adicionarItem() {
     const formValues = this.formAddItem.value;
-    this.productService.findProductByIdActive(formValues.id).subscribe((response) => {
+    this.productService.findProductByBarcodeActive(formValues.barcode).subscribe((response) => {
       const total = response.price * formValues.quantidade;
       const productSold = new ProductSold(
         null,
@@ -115,6 +119,7 @@ export class SaleComponent implements OnInit {
       );
 
       this.productsSolds = this.productsSolds.concat(productSold);
+      this.formAddItem.reset()
       this.statusCaixa = "Venda em Aberto";
     }, errorResponse => {
       // exibir mensagem snackbar

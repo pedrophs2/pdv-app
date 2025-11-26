@@ -6,11 +6,14 @@ import { ProductComponent } from './page/product/product.component';
 import { SaleComponent } from './page/sale/sale.component';
 import { SalesListComponent } from './page/sales-list/sales-list.component';
 import { GuardiaoGuard } from './service/guardiao.guard';
+import { ProductList } from './page/product-list/product-list';
 
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [GuardiaoGuard] },
   { path: 'product', component: ProductComponent, canActivate: [GuardiaoGuard] },
+  { path: 'product/:id', component: ProductComponent, canActivate: [GuardiaoGuard] },
+  { path: 'product-list', component: ProductList, canActivate: [GuardiaoGuard] },
   { path: 'sale', component: SaleComponent, canActivate: [GuardiaoGuard] },
   { path: 'sales', component: SalesListComponent, canActivate: [GuardiaoGuard] },
   { path: 'login', component: LoginComponent },

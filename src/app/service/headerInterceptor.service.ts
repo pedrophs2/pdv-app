@@ -47,7 +47,7 @@ export class HeaderInterceptorService implements HttpInterceptor {
         errorMessage = 'Código: ' + error.status + '\nMensagem: ' + error.error.error;
       }
     }
-    window.alert(errorMessage)
+    console.log(errorMessage)
     return throwError(errorMessage);
   }
 }

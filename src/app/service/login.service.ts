@@ -27,6 +27,7 @@ export class LoginService {
 
 
   login(usuario: any) {
+    console.log(usuario)
     return this.http.post(AppConstants.baseLogin, JSON.stringify(usuario)).subscribe(data => {
       /*Retorno Http*/
       var token = JSON.parse(JSON.stringify(data)).Authorization.split(' ')[1];
