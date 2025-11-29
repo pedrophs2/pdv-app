@@ -1,7 +1,10 @@
 <div class="row">
     <div class="col-md-12"></div>
-    <!-- ngFor for para percorrer o array de erros e se existir erros imprimir na tela -->
-    <div class="alert alert-danger" role="alert" *ngFor="let erro of mensagemErros">
+    <div
+        class="alert alert-danger"
+        role="alert"
+        *ngFor="let erro of mensagemErros"
+    >
         {{ erro }}
     </div>
 </div>
@@ -18,32 +21,69 @@
     <div class="container-fluid form-container">
         <div class="row">
             <div class="col-md-12"></div>
-            <!-- ngFor for para percorrer o array de erros e se existir erros imprimir na tela -->
-            <div class="alert alert-danger" role="alert" *ngFor="let erro of mensagemErros">
+            <div
+                class="alert alert-danger"
+                role="alert"
+                *ngFor="let erro of mensagemErros"
+            >
                 {{ erro }}
             </div>
         </div>
 
         <div [formGroup]="formulario">
-            <br/>
+            <br />
             <mat-form-field class="full-width" appearance="fill">
                 <mat-label>Código de Barras</mat-label>
-                <input formControlName="barcode" matInput placeholder="Código de barras" minLength="1" required>
+                <input
+                    formControlName="barcode"
+                    matInput
+                    placeholder="Código de barras"
+                    minLength="1"
+                    required
+                />
             </mat-form-field>
 
             <mat-form-field class="full-width" appearance="fill">
                 <mat-label>Nome</mat-label>
-                <input formControlName="name" matInput placeholder="Digite seu nome" minlength="3" maxlength="50"
-                    required>
+                <input
+                    formControlName="name"
+                    matInput
+                    placeholder="Digite seu nome"
+                    minlength="3"
+                    maxlength="50"
+                    required
+                />
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Quantidade Estoque</mat-label>
+                <input
+                    formControlName="stock"
+                    matInput
+                    placeholder="Digite a quantidade de estoque inicial"
+                    type="number"
+                    minlength="1"
+                    maxlength="50"
+                    required
+                />
             </mat-form-field>
 
             <mat-form-field class="full-width" appearance="fill">
                 <mat-label>Preço</mat-label>
                 <span matPrefix>R$ &nbsp;</span>
-                <input matInput formControlName="price" mask="separator.2" thousandSeparator="." placeholder="1.000,00"
-                    minlength="1" maxlength="6" required>
-                <mat-error *ngIf="formulario.controls.price.hasError('required')">Preço é
-                    obrigatório! Informe 0 para itens sem preço.
+                <input
+                    matInput
+                    formControlName="price"
+                    mask="separator.2"
+                    thousandSeparator="."
+                    placeholder="1.000,00"
+                    minlength="1"
+                    maxlength="6"
+                    required
+                />
+                <mat-error
+                    *ngIf="formulario.controls.price.hasError('required')"
+                    >Preço é obrigatório! Informe 0 para itens sem preço.
                 </mat-error>
             </mat-form-field>
 
@@ -53,8 +93,10 @@
                     <mat-option value="true">Ativo</mat-option>
                     <mat-option value="false">Inativo</mat-option>
                 </mat-select>
-                <mat-error *ngIf="formulario.controls.active.hasError('required')">Status
-                    é obrigatório!</mat-error>
+                <mat-error
+                    *ngIf="formulario.controls.active.hasError('required')"
+                    >Status é obrigatório!</mat-error
+                >
             </mat-form-field>
 
             <div class="row justify-content-between">
@@ -65,26 +107,40 @@
                     </button>
                 </div>
                 <div class="col-6" align="right">
-                    <button [disabled]="!formulario.valid" mat-raised-button color="primary" (click)="submit()">
+                    <button
+                        [disabled]="!formulario.valid"
+                        mat-raised-button
+                        color="primary"
+                        (click)="submit()"
+                    >
                         <mat-icon>save</mat-icon>
                         Salvar
                     </button>
                 </div>
             </div>
-            <br/>
+            <br />
         </div>
         <div class="esp-top">
-            <!-- verifica se tem erros no preenchimento do campo e se inicio o preenchimento -->
-            <div *ngIf="formulario.controls.name.errors && !formulario.controls.name.pristine"
-                class="alert alert-warning" role="alert">
+            <div
+                *ngIf="
+                    formulario.controls.name.errors &&
+                    !formulario.controls.name.pristine
+                "
+                class="alert alert-warning"
+                role="alert"
+            >
                 Campo nome deve conter entre 3 e 50 caracteres!
             </div>
-            <!-- verifica se tem erros no preenchimento do campo e se inicio o preenchimento -->
-            <div *ngIf="formulario.controls.price.errors && !formulario.controls.price.pristine"
-                class="alert alert-warning" role="alert">
+            <div
+                *ngIf="
+                    formulario.controls.price.errors &&
+                    !formulario.controls.price.pristine
+                "
+                class="alert alert-warning"
+                role="alert"
+            >
                 Verifique o preço informado!
             </div>
         </div>
     </div>
-
 </main>
