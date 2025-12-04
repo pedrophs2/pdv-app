@@ -85,10 +85,11 @@ export class SaleComponent implements OnInit {
                     parseFloat(String(result.pago).replace(",", ".")),
                     parseFloat(String(result.troco).replace(",", ".")),
                     result.payment,
-                    this.productsSolds
+                    Number(result.installments),
+                    this.productsSolds,
+                    { id: this.getUserId() }
                 );
 
-                // salvar venda
                 this.saleService.save(venda).subscribe(
                     (resposta) => {
                         this.snackBar.open(
@@ -98,11 +99,9 @@ export class SaleComponent implements OnInit {
                                 duration: 2000,
                             }
                         );
-                        //limpar formulário
                         this.load();
                     },
                     (errorResponse) => {
-                        // exibir mensagem snackbar
                         this.snackBar.open(
                             errorResponse.error.message,
                             "ERRO",
@@ -167,6 +166,11 @@ export class SaleComponent implements OnInit {
         this.pagar = this.productsSolds
             .map((t) => t.priceTotal)
             .reduce((acc, value) => acc + value, 0);
+
         return this.pagar;
+    }
+
+    getUserId() {
+        return Number(localStorage.getItem("userId"));
     }
 }

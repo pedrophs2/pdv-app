@@ -18,6 +18,7 @@ export class SaleDialogComponent {
     ) {
         this.data.pago = 0;
         this.data.payment = null;
+        this.data.installments = 1;
         this.calc();
     }
 

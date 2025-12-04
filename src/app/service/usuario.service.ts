@@ -2,8 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { AppConstants } from "../app-constants";
 import { environment } from "src/environments/environment";
-import { User } from "../model/User";
-import { UserDTO } from "../domain/user.dto";
+import { UserLoginDTO } from "../domain/dto/user/user-login.dto";
 
 @Injectable({
     providedIn: "root",
@@ -26,6 +25,6 @@ export class UsuarioService {
     }
 
     getUserByName(name: string) {
-        return this.http.get<UserDTO>(`${this.apiURL}/username/${name}`);
+        return this.http.get<UserLoginDTO>(`${this.apiURL}/username/${name}`);
     }
 }
