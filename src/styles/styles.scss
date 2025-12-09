@@ -3,9 +3,18 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 $roboto-font-path: "~roboto-fontface/fonts" !default;
 @import "~roboto-fontface/css/roboto/sass/roboto-fontface";
-$material-icons-font-path: '~material-icons/iconfont/';
-@import '~material-icons/iconfont/material-icons.scss';
+$material-icons-font-path: "~material-icons/iconfont/";
+@import "~material-icons/iconfont/material-icons.scss";
 
-@import 'core-ui-fixes';
-@import 'material-fixes';
+@import "core-ui-fixes";
+@import "material-fixes";
 
+.cdk-row {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cdk-row:hover {
+    background: whitesmoke;
+    transition: ease-in-out 0.3s;
+}
