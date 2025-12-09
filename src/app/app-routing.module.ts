@@ -6,7 +6,7 @@ import { ProductComponent } from "./page/product/product.component";
 import { SaleComponent } from "./page/sale/sale.component";
 import { SalesListComponent } from "./page/sales-list/sales-list.component";
 import { GuardiaoGuard } from "./service/guardiao.guard";
-import { Products } from "./page/products/products";
+import { ProductsComponent } from "./page/products/products.component";
 import { UserComponent } from "./page/user/user.component";
 import { UsersComponent } from "./page/users/users.component";
 
@@ -24,7 +24,7 @@ const routes: Routes = [
     },
     {
         path: "products",
-        component: Products,
+        component: ProductsComponent,
         canActivate: [GuardiaoGuard],
     },
     { path: "sale", component: SaleComponent, canActivate: [GuardiaoGuard] },

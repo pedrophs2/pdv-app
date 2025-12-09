@@ -9,10 +9,10 @@ import { Product } from "../../domain/model/product/product";
 
 @Component({
     selector: "app-products",
-    templateUrl: "./products.html",
-    styleUrls: ["./procucts.scss"],
+    templateUrl: "./products.component.html",
+    styleUrls: ["./procucts.component.scss"],
 })
-export class Products implements OnInit {
+export class ProductsComponent implements OnInit {
     formulario: FormGroup;
     //lista de products para exiboir
     products: Product[] = [];
