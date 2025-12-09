@@ -36,7 +36,7 @@ import { NgxMaskModule } from "ngx-mask";
 import { ProductComponent } from "./page/product/product.component";
 import { SaleDialogComponent } from "./page/sale-dialog/sale-dialog.component";
 import { SaleComponent } from "./page/sale/sale.component";
-import { SalesListComponent } from "./page/sales-list/sales-list.component";
+import { SalesComponent } from "./page/sales/sales.component";
 import { PaymentService } from "./service/payment.service";
 import { ProductService } from "./service/product.service";
 import { ConfirmaDeleteComponent } from "./util/confirma-delete/confirma-delete.component";
@@ -62,7 +62,7 @@ registerLocaleData(localePt, "pt-BR");
         ProductsComponent,
         SaleComponent,
         SaleDialogComponent,
-        SalesListComponent,
+        SalesComponent,
         LoginComponent,
         UserComponent,
         UsersComponent,

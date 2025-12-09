@@ -7,10 +7,11 @@ import { ConfirmaDeleteComponent } from "src/app/util/confirma-delete/confirma-d
 import { Sale } from "../../domain/model/sale/sale";
 
 @Component({
-    templateUrl: "./sales-list.component.html",
-    styleUrls: ["./sales-list.component.scss"],
+    selector: "app-sales",
+    templateUrl: "./sales.component.html",
+    styleUrls: ["./sales.component.scss"],
 })
-export class SalesListComponent implements OnInit {
+export class SalesComponent implements OnInit {
     sales: Sale[] = [];
     ordemColunasTabela = [
         "id",
@@ -25,8 +26,8 @@ export class SalesListComponent implements OnInit {
     totalElementos = 0;
     pagina = 0;
     tamanho = 5;
-    pageSizeOptions: number[] = [5, 10, 15, 100]; // [10,20,30] quantidade de item por página
-    mensagemErros: String[] = []; //array de strings dos erros retornados do backend
+    pageSizeOptions: number[] = [5, 10, 15, 100];
+    mensagemErros: String[] = [];
 
     constructor(
         private saleService: SaleService,
@@ -49,7 +50,6 @@ export class SalesListComponent implements OnInit {
     openDialog(id: number) {
         const dialogRef = this.dialog.open(ConfirmaDeleteComponent);
         dialogRef.afterClosed().subscribe((result) => {
-            // se clicar em ok chama evento de excluir
             if (result) {
                 this.excluir(id);
             }
@@ -61,19 +61,17 @@ export class SalesListComponent implements OnInit {
             (response) => {
                 this.ngOnInit();
                 this.mensagemErros = [];
-                // exibir mensagem snackbar
+
                 this.snackBar.open("Venda excluida com sucesso!", "Sucesso", {
                     duration: 2000,
                 });
             },
             (errorResponse) => {
-                // exibe mensagem de erro da api
                 this.mensagemErros = ["Erro: " + errorResponse.error.message];
             }
         );
     }
 
-    //chamar a paginação
     paginar(event: PageEvent) {
         this.pagina = event.pageIndex;
         this.tamanho = event.pageSize;

@@ -4,7 +4,7 @@ import { HomeComponent } from "./page/home/home.component";
 import { LoginComponent } from "./page/login/login.component";
 import { ProductComponent } from "./page/product/product.component";
 import { SaleComponent } from "./page/sale/sale.component";
-import { SalesListComponent } from "./page/sales-list/sales-list.component";
+import { SalesComponent } from "./page/sales/sales.component";
 import { GuardiaoGuard } from "./service/guardiao.guard";
 import { ProductsComponent } from "./page/products/products.component";
 import { UserComponent } from "./page/user/user.component";
@@ -30,7 +30,7 @@ const routes: Routes = [
     { path: "sale", component: SaleComponent, canActivate: [GuardiaoGuard] },
     {
         path: "sales",
-        component: SalesListComponent,
+        component: SalesComponent,
         canActivate: [GuardiaoGuard],
     },
     {
