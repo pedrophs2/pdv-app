@@ -4,7 +4,8 @@
     "scripts": {
         "ng": "ng",
         "gitside": "ng build --configuration production --base-href /admin-template/",
-        "start": "ng serve --open",
+        "start": "ng serve",
+        "start-opened": "ng serve --open",
         "build": "ng build",
         "test": "ng test",
         "ci:test": "ng test --watch=false --browsers=ChromeHeadlessCustom",

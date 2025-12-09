@@ -45,7 +45,7 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
 import { LoginService } from "./service/login.service";
 import { LoginComponent } from "./page/login/login.component";
 import { HttpInterceptorModule } from "./service/headerInterceptor.service";
-import { ProductList } from "./page/product-list/product-list";
+import { Products } from "./page/products/products";
 import { UserComponent } from "./page/user/user.component";
 import { UsersComponent } from "./page/users/users.component";
 
@@ -59,7 +59,7 @@ registerLocaleData(localePt, "pt-BR");
         HomeComponent,
         ConfirmaDeleteComponent,
         ProductComponent,
-        ProductList,
+        Products,
         SaleComponent,
         SaleDialogComponent,
         SalesListComponent,

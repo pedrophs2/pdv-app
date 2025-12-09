@@ -8,11 +8,11 @@ import { ConfirmaDeleteComponent } from "src/app/util/confirma-delete/confirma-d
 import { Product } from "../../domain/model/product/product";
 
 @Component({
-    selector: "app-product-list",
-    templateUrl: "./product-list.html",
-    styleUrls: ["./product-list.css"],
+    selector: "app-products",
+    templateUrl: "./products.html",
+    styleUrls: ["./procucts.scss"],
 })
-export class ProductList implements OnInit {
+export class Products implements OnInit {
     formulario: FormGroup;
     //lista de products para exiboir
     products: Product[] = [];
