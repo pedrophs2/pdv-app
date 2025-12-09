@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="table-title-container">
             <span class="table-title-text">Usuários</span>
-            <button mat-flat-button routerLink="/product">
+            <button mat-flat-button routerLink="/users/new">
                 <mat-icon>add</mat-icon>
                 Novo Usuário
             </button>
@@ -27,7 +27,11 @@
                     </ng-container>
 
                     <tr mat-header-row *matHeaderRowDef="columns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: columns"></tr>
+                    <tr
+                        mat-row
+                        *matRowDef="let row; columns: columns"
+                        (click)="edit(row)"
+                    ></tr>
                 </table>
             </mat-card>
         </div>

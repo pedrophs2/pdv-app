@@ -3,15 +3,15 @@
     <div
         class="alert alert-danger"
         role="alert"
-        *ngFor="let erro of mensagemErros"
+        *ngFor="let error of errorMessages"
     >
-        {{ erro }}
+        {{ error }}
     </div>
 </div>
 
 <main>
     <div class="title-container">
-        <span class="titleText">{{ tituloPagina }}</span>
+        <span class="titleText">{{ pageTitle }}</span>
         <button mat-flat-button routerLink="/products">
             <mat-icon>chevron_left</mat-icon>
             Voltar
@@ -24,13 +24,13 @@
             <div
                 class="alert alert-danger"
                 role="alert"
-                *ngFor="let erro of mensagemErros"
+                *ngFor="let error of errorMessages"
             >
-                {{ erro }}
+                {{ error }}
             </div>
         </div>
 
-        <div [formGroup]="formulario">
+        <div [formGroup]="form">
             <br />
             <mat-form-field class="full-width" appearance="fill">
                 <mat-label>Código de Barras</mat-label>
@@ -81,8 +81,7 @@
                     maxlength="6"
                     required
                 />
-                <mat-error
-                    *ngIf="formulario.controls.price.hasError('required')"
+                <mat-error *ngIf="form.controls.price.hasError('required')"
                     >Preço é obrigatório! Informe 0 para itens sem preço.
                 </mat-error>
             </mat-form-field>
@@ -93,8 +92,7 @@
                     <mat-option value="true">Ativo</mat-option>
                     <mat-option value="false">Inativo</mat-option>
                 </mat-select>
-                <mat-error
-                    *ngIf="formulario.controls.active.hasError('required')"
+                <mat-error *ngIf="form.controls.active.hasError('required')"
                     >Status é obrigatório!</mat-error
                 >
             </mat-form-field>
@@ -108,7 +106,7 @@
                 </div>
                 <div class="col-6" align="right">
                     <button
-                        [disabled]="!formulario.valid"
+                        [disabled]="!form.valid"
                         mat-raised-button
                         color="primary"
                         (click)="submit()"
@@ -123,8 +121,7 @@
         <div class="esp-top">
             <div
                 *ngIf="
-                    formulario.controls.name.errors &&
-                    !formulario.controls.name.pristine
+                    form.controls.name.errors && !form.controls.name.pristine
                 "
                 class="alert alert-warning"
                 role="alert"
@@ -133,8 +130,7 @@
             </div>
             <div
                 *ngIf="
-                    formulario.controls.price.errors &&
-                    !formulario.controls.price.pristine
+                    form.controls.price.errors && !form.controls.price.pristine
                 "
                 class="alert alert-warning"
                 role="alert"

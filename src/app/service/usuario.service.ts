@@ -5,6 +5,7 @@ import { environment } from "src/environments/environment";
 import { UserLoginDTO } from "../domain/dto/user/user-login.dto";
 import { UserDTO } from "../domain/dto/user/user.dto";
 import { CreateUserDTO } from "../domain/dto/user/create-user.dto";
+import { EditUserDTO } from "../domain/dto/user/edit-user.dto";
 
 @Injectable({
     providedIn: "root",
@@ -36,5 +37,13 @@ export class UsuarioService {
 
     createUser(user: CreateUserDTO) {
         return this.http.post<CreateUserDTO>(`${this.apiURL}`, user);
+    }
+
+    editUser(user: EditUserDTO) {
+        return this.http.put<UserDTO>(`${this.apiURL}`, user);
+    }
+
+    getUserById(id: number) {
+        return this.http.get<UserDTO>(`${this.apiURL}/${id}`);
     }
 }

@@ -6,6 +6,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { ProductService } from "src/app/service/product.service";
 import { ConfirmaDeleteComponent } from "src/app/util/confirma-delete/confirma-delete.component";
 import { Product } from "../../domain/model/product/product";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "app-products",
@@ -14,85 +15,42 @@ import { Product } from "../../domain/model/product/product";
 })
 export class ProductsComponent implements OnInit {
     formulario: FormGroup;
-    //lista de products para exiboir
+
     products: Product[] = [];
-    //ordem das colunas no html
-    ordemColunasTabela = ["id", "name", "price", "stock", "excluir"];
+
+    ordemColunasTabela = ["id", "name", "price", "stock"];
     totalElementos = 0;
     pagina = 0;
     tamanho = 5;
-    pageSizeOptions: number[] = [5, 10, 15, 100]; // [10,20,30] quantidade de item por página
-    mensagemErros: String[] = []; //array de strings dos erros retornados do backend
+    pageSizeOptions: number[] = [5, 10, 15, 100];
+    mensagemErros: String[] = [];
 
     constructor(
-        private productService: ProductService,
-        private formBuilder: FormBuilder,
-        private snackBar: MatSnackBar,
-        public dialog: MatDialog
+        private readonly productService: ProductService,
+        private readonly snackBar: MatSnackBar,
+        private readonly dialog: MatDialog,
+        private readonly router: Router
     ) {}
 
     ngOnInit(): void {
-        this.listarProductes(this.pagina, this.tamanho);
+        this.listProducts(this.pagina, this.tamanho);
     }
 
-    listarProductes(pagina: number, tamanho: number) {
-        // definir a primeira página e o tamanho inicial
+    listProducts(pagina: number, tamanho: number) {
         this.productService.list(pagina, tamanho).subscribe((response) => {
-            this.products = response.content; // pegar o conteudo do pag
-            this.totalElementos = response.totalElements; // pegar o total de elementos
-            this.pagina = response.number; // pegar o numero de paginas
+            this.products = response.content;
+            this.totalElementos = response.totalElements;
+            this.pagina = response.number;
         });
     }
 
-    private excluir(id: number) {
-        this.productService.delete(id).subscribe(
-            (response) => {
-                this.ngOnInit();
-                this.mensagemErros = [];
-                // exibir mensagem snackbar
-                this.snackBar.open(
-                    "Producto excluido com sucesso!",
-                    "Sucesso",
-                    {
-                        duration: 2000,
-                    }
-                );
-            },
-            (errorResponse) => {
-                // exibe mensagem de erro da api
-                this.mensagemErros = ["Erro: " + errorResponse.error.message];
-            }
-        );
-    }
-
-    editar(id: number) {
-        this.productService.findProductById(id).subscribe((response) => {
-            // cria e adiciona no objeto
-            this.formulario.controls.id.setValue(id);
-            this.formulario.controls.name.setValue(response.name);
-            this.formulario.controls.price.setValue(
-                (response.price + "").replace(".", ",")
-            );
-            this.formulario.controls["active"].setValue(
-                response.active ? "true" : "false"
-            );
-        });
-    }
-
-    //chamar a paginação
     paginar(event: PageEvent) {
         this.pagina = event.pageIndex;
         this.tamanho = event.pageSize;
-        this.listarProductes(this.pagina, this.tamanho);
+        this.listProducts(this.pagina, this.tamanho);
     }
 
-    openDialog(id: number) {
-        const dialogRef = this.dialog.open(ConfirmaDeleteComponent);
-        dialogRef.afterClosed().subscribe((result) => {
-            // se clicar em ok chama evento de excluir
-            if (result) {
-                this.excluir(id);
-            }
-        });
+    edit(product: any) {
+        this.router.navigate([`products/${product.id}`]);
     }
 }

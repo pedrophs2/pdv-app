@@ -13,18 +13,18 @@ import { UsersComponent } from "./page/users/users.component";
 const routes: Routes = [
     { path: "home", component: HomeComponent, canActivate: [GuardiaoGuard] },
     {
-        path: "product",
-        component: ProductComponent,
-        canActivate: [GuardiaoGuard],
-    },
-    {
-        path: "product/:id",
-        component: ProductComponent,
-        canActivate: [GuardiaoGuard],
-    },
-    {
         path: "products",
         component: ProductsComponent,
+        canActivate: [GuardiaoGuard],
+    },
+    {
+        path: "products/new",
+        component: ProductComponent,
+        canActivate: [GuardiaoGuard],
+    },
+    {
+        path: "products/:id",
+        component: ProductComponent,
         canActivate: [GuardiaoGuard],
     },
     { path: "sale", component: SaleComponent, canActivate: [GuardiaoGuard] },
@@ -39,12 +39,12 @@ const routes: Routes = [
         canActivate: [GuardiaoGuard],
     },
     {
-        path: "user",
+        path: "users/new",
         component: UserComponent,
         canActivate: [GuardiaoGuard],
     },
     {
-        path: "user/:id",
+        path: "users/:id",
         component: UserComponent,
         canActivate: [GuardiaoGuard],
     },

@@ -5,6 +5,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { SaleService } from "src/app/service/sale.service";
 import { ConfirmaDeleteComponent } from "src/app/util/confirma-delete/confirma-delete.component";
 import { Sale } from "../../domain/model/sale/sale";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "app-sales",
@@ -13,6 +14,7 @@ import { Sale } from "../../domain/model/sale/sale";
 })
 export class SalesComponent implements OnInit {
     sales: Sale[] = [];
+
     ordemColunasTabela = [
         "id",
         "amount",
@@ -21,8 +23,8 @@ export class SalesComponent implements OnInit {
         "payment",
         "installments",
         "employee",
-        "excluir",
     ];
+
     totalElementos = 0;
     pagina = 0;
     tamanho = 5;
@@ -30,9 +32,10 @@ export class SalesComponent implements OnInit {
     mensagemErros: String[] = [];
 
     constructor(
-        private saleService: SaleService,
-        private snackBar: MatSnackBar,
-        public dialog: MatDialog
+        private readonly saleService: SaleService,
+        private readonly snackBar: MatSnackBar,
+        private readonly dialog: MatDialog,
+        private readonly router: Router
     ) {}
 
     ngOnInit(): void {
@@ -47,34 +50,13 @@ export class SalesComponent implements OnInit {
         });
     }
 
-    openDialog(id: number) {
-        const dialogRef = this.dialog.open(ConfirmaDeleteComponent);
-        dialogRef.afterClosed().subscribe((result) => {
-            if (result) {
-                this.excluir(id);
-            }
-        });
-    }
-
-    private excluir(id: number) {
-        this.saleService.delete(id).subscribe(
-            (response) => {
-                this.ngOnInit();
-                this.mensagemErros = [];
-
-                this.snackBar.open("Venda excluida com sucesso!", "Sucesso", {
-                    duration: 2000,
-                });
-            },
-            (errorResponse) => {
-                this.mensagemErros = ["Erro: " + errorResponse.error.message];
-            }
-        );
-    }
-
     paginar(event: PageEvent) {
         this.pagina = event.pageIndex;
         this.tamanho = event.pageSize;
         this.listSales(this.pagina, this.tamanho);
+    }
+
+    edit(sale: any) {
+        alert("Em desenvolvimento");
     }
 }

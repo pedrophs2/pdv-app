@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="table-title-container">
             <span class="table-title-text">Produtos</span>
-            <button mat-flat-button routerLink="/product">
+            <button mat-flat-button routerLink="/products/new">
                 <mat-icon>add</mat-icon>
                 Novo Produto
             </button>
@@ -27,7 +27,7 @@
                     <ng-container matColumnDef="price">
                         <th mat-header-cell *matHeaderCellDef>Preço</th>
                         <td mat-cell *matCellDef="let product">
-                            {{ product.price | currency:'BRL'}}
+                            {{ product.price | currency : "BRL" }}
                         </td>
                     </ng-container>
 
@@ -38,38 +38,14 @@
                         </td>
                     </ng-container>
 
-                    <ng-container matColumnDef="active">
-                        <th mat-header-cell *matHeaderCellDef>Status</th>
-                        <td mat-cell *matCellDef="let product">
-                            <div *ngIf="product.active==true; else elseBlock">
-                                <p class="text-primary">Ativo</p>
-                            </div>
-                            <ng-template #elseBlock>
-                                <p class="text-danger">Inativo</p>
-                            </ng-template>
-                        </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="excluir">
-                        <th mat-header-cell *matHeaderCellDef>Excluir</th>
-                        <td mat-cell *matCellDef="let product">
-                            <button
-                                (click)="openDialog(product.id)"
-                                mat-icon-button
-                                color="warn"
-                            >
-                                <mat-icon>delete</mat-icon>
-                            </button>
-                        </td>
-                    </ng-container>
-
                     <tr
                         mat-header-row
                         *matHeaderRowDef="ordemColunasTabela"
                     ></tr>
                     <tr
                         mat-row
-                        *matRowDef="let row; columns: ordemColunasTabela;"
+                        *matRowDef="let row; columns: ordemColunasTabela"
+                        (click)="edit(row)"
                     ></tr>
                 </table>
                 <mat-paginator
