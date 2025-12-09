@@ -8,13 +8,4 @@ $material-icons-font-path: "~material-icons/iconfont/";
 
 @import "core-ui-fixes";
 @import "material-fixes";
-
-.cdk-row {
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.cdk-row:hover {
-    background: whitesmoke;
-    transition: ease-in-out 0.3s;
-}
+@import "table-styles";

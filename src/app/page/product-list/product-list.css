@@ -21,15 +21,3 @@
 .esp-left {
     padding-left: 10px;
 }
-
-.title-container {
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.titleText {
-    font-size: large;
-    font-weight: bold;
-}

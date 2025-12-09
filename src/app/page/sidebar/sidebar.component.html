@@ -1,22 +1,25 @@
 <ul class="c-sidebar-nav">
-
     <div *ngFor="let item of menuItems">
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" matRipple [routerLink]="item.path" routerLinkActive="c-active">
+            <a
+                class="c-sidebar-nav-link"
+                matRipple
+                [routerLink]="item.path"
+                routerLinkActive="c-active"
+            >
                 <i class="c-sidebar-nav-icon">
                     <mat-icon>{{ item.icon }}</mat-icon>
-                </i> {{ item.label }}
+                </i>
+                {{ item.label }}
             </a>
         </li>
         <mat-divider></mat-divider>
     </div>
-
 
     <button mat-raised-button color="accent" (click)="sair()">
         <mat-icon>logout</mat-icon>
         Logout
     </button>
 
-    <!-- conteudo da página -->
     <ng-content></ng-content>
 </ul>

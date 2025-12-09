@@ -1,0 +1,21 @@
+.cdk-row {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cdk-row:hover {
+    background: whitesmoke;
+    transition: ease-in-out 0.3s;
+}
+
+.table-title-container {
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table-title-text {
+    font-size: large;
+    font-weight: bold;
+}

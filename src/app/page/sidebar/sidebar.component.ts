@@ -24,14 +24,14 @@ export class SidebarComponent {
             path: "home",
         },
         {
-            label: "Produto",
-            icon: "splitscreen",
-            path: "products",
-        },
-        {
             label: "PDV",
             icon: "point_of_sale",
             path: "sale",
+        },
+        {
+            label: "Produto",
+            icon: "splitscreen",
+            path: "products",
         },
         {
             label: "Vendas",
