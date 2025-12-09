@@ -17,7 +17,7 @@ export class ProductList implements OnInit {
     //lista de products para exiboir
     products: Product[] = [];
     //ordem das colunas no html
-    ordemColunasTabela = ["id", "name", "price", "stock", "excluir", "editar"];
+    ordemColunasTabela = ["id", "name", "price", "stock", "excluir"];
     totalElementos = 0;
     pagina = 0;
     tamanho = 5;
