@@ -1,4 +1,4 @@
-import { Sale } from "./sale"
+import { Sale } from "./sale";
 
 export class PaginacaoSale {
     content: Sale[];

@@ -2,9 +2,9 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { AppConstants } from "../app-constants";
-import { User } from "../model/User";
+import { User } from "../domain/model/User";
 import { Observable } from "rxjs";
-import { Token } from "../model/Token";
+import { Token } from "../domain/model/Token";
 
 @Injectable({
     providedIn: "root",

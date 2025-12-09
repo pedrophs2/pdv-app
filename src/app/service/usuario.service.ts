@@ -3,6 +3,8 @@ import { Injectable } from "@angular/core";
 import { AppConstants } from "../app-constants";
 import { environment } from "src/environments/environment";
 import { UserLoginDTO } from "../domain/dto/user/user-login.dto";
+import { UserDTO } from "../domain/dto/user/user.dto";
+import { CreateUserDTO } from "../domain/dto/user/create-user.dto";
 
 @Injectable({
     providedIn: "root",
@@ -24,7 +26,15 @@ export class UsuarioService {
         }
     }
 
+    list(pagina?: number, tamanho?: number) {
+        return this.http.get<UserDTO[]>(`${this.apiURL}`);
+    }
+
     getUserByName(name: string) {
         return this.http.get<UserLoginDTO>(`${this.apiURL}/username/${name}`);
+    }
+
+    createUser(user: CreateUserDTO) {
+        return this.http.post<CreateUserDTO>(`${this.apiURL}`, user);
     }
 }

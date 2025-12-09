@@ -5,7 +5,7 @@ import { PageEvent } from "@angular/material/paginator";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ProductService } from "src/app/service/product.service";
 import { ConfirmaDeleteComponent } from "src/app/util/confirma-delete/confirma-delete.component";
-import { Product } from "../product/product";
+import { Product } from "../../domain/model/product/product";
 
 @Component({
     selector: "app-product-list",

@@ -4,7 +4,7 @@ import { PageEvent } from "@angular/material/paginator";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { SaleService } from "src/app/service/sale.service";
 import { ConfirmaDeleteComponent } from "src/app/util/confirma-delete/confirma-delete.component";
-import { Sale } from "../sale/sale";
+import { Sale } from "../../domain/model/sale/sale";
 
 @Component({
     templateUrl: "./sales-list.component.html",

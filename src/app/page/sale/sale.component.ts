@@ -5,8 +5,8 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { ProductService } from "src/app/service/product.service";
 import { SaleService } from "src/app/service/sale.service";
 import { SaleDialogComponent } from "../sale-dialog/sale-dialog.component";
-import { ProductSold } from "./productSold";
-import { Sale } from "./sale";
+import { ProductSold } from "../../domain/model/product/productSold";
+import { Sale } from "../../domain/model/sale/sale";
 @Component({
     selector: "app-sale",
     templateUrl: "./sale.component.html",

@@ -1,0 +1,88 @@
+<main>
+    <div class="title-container">
+        <span class="titleText">{{ titlePage }}</span>
+        <button mat-flat-button routerLink="/users">
+            <mat-icon>chevron_left</mat-icon>
+            Voltar
+        </button>
+    </div>
+
+    <div class="container-fluid form-container">
+        <div [formGroup]="formGroup">
+            <br />
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Nome Completo</mat-label>
+                <input
+                    formControlName="name"
+                    matInput
+                    placeholder="Digite seu nome"
+                    minlength="3"
+                    maxlength="50"
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Usuário</mat-label>
+                <input
+                    formControlName="username"
+                    matInput
+                    placeholder="Nome de Usuário (ex: fernando123)"
+                    minLength="1"
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field
+                class="full-width"
+                appearance="fill"
+                *ngIf="!userId"
+            >
+                <mat-label>Senha</mat-label>
+                <input
+                    formControlName="password"
+                    matInput
+                    placeholder="Digite a senha do usuário"
+                    type="password"
+                    minlength="8"
+                    maxlength="50"
+                    required
+                />
+            </mat-form-field>
+            <mat-form-field
+                class="full-width"
+                appearance="fill"
+                *ngIf="!userId"
+            >
+                <mat-label>Confirmação de Senha</mat-label>
+                <input
+                    formControlName="confirmPassword"
+                    matInput
+                    placeholder="Confirme a senha do usuário"
+                    type="password"
+                    minlength="8"
+                    maxlength="50"
+                    required
+                />
+            </mat-form-field>
+            <div class="row justify-content-between">
+                <div class="col-6">
+                    <button (click)="clearForm()" mat-raised-button>
+                        <mat-icon>insert_drive_file</mat-icon>
+                        Limpar
+                    </button>
+                </div>
+                <div class="col-6" align="right">
+                    <button
+                        [disabled]="!formGroup.valid"
+                        mat-raised-button
+                        color="primary"
+                        (click)="submitForm()"
+                    >
+                        <mat-icon>save</mat-icon>
+                        Salvar
+                    </button>
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+</main>

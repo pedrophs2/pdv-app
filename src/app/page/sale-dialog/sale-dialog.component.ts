@@ -1,14 +1,14 @@
 import { Component, Inject } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { PaymentService } from "src/app/service/payment.service";
-import { Payment } from "../payment/payment";
+import { PaymentDTO } from "../../domain/dto/payment.dto";
 
 @Component({
     selector: "app-example-dialog",
     templateUrl: "sale-dialog.component.html",
 })
 export class SaleDialogComponent {
-    payments: Payment[] = [];
+    payments: PaymentDTO[] = [];
     troco = 0.0;
 
     constructor(

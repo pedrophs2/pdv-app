@@ -1,65 +1,70 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app/service/product.service';
-import { SaleService } from 'src/app/service/sale.service';
-import { Product } from '../product/product';
-import { Sale } from '../sale/sale';
+import { Component, OnInit } from "@angular/core";
+import { ProductService } from "src/app/service/product.service";
+import { SaleService } from "src/app/service/sale.service";
+import { Product } from "../../domain/model/product/product";
+import { Sale } from "../../domain/model/sale/sale";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+    selector: "app-home",
+    templateUrl: "./home.component.html",
+    styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
+    totalVendas: number;
+    valorVendas: number;
+    produtosCadastrados: number;
+    produtosAtivos: number;
+    sales: Sale[] = [];
+    ordemColunasTabela = [
+        "id",
+        "amount",
+        "amountPaid",
+        "difference",
+        "payment",
+        "employee",
+    ];
+    mensagemErros: String[] = [];
 
-  totalVendas: number;
-  valorVendas: number;
-  produtosCadastrados: number;
-  produtosAtivos: number;
-  sales: Sale[] = [];
-  ordemColunasTabela = ['id', 'amount', 'amountPaid', 'difference', 'payment'];
-  mensagemErros: String[] = [];
+    constructor(
+        private saleService: SaleService,
+        private productService: ProductService
+    ) {}
 
+    ngOnInit() {
+        this.somarVendas();
+        this.totalDeVendas();
+        this.totalProdutos();
+        this.totalProdutosAtivos();
+        this.listSales();
+    }
 
-  constructor(
-    private saleService: SaleService,
-    private productService: ProductService
-  ) { }
+    somarVendas() {
+        this.saleService.somaTotal().subscribe((response) => {
+            this.valorVendas = response;
+        });
+    }
 
-  ngOnInit() {
-    this.somarVendas();
-    this.totalDeVendas();
-    this.totalProdutos();
-    this.totalProdutosAtivos();
-    this.listSales();
-  }
+    totalDeVendas() {
+        this.saleService.totalVendas().subscribe((response) => {
+            this.totalVendas = response;
+        });
+    }
 
-  somarVendas() {
-    this.saleService.somaTotal().subscribe((response) => {
-      this.valorVendas = response;
-    })
-  }
+    totalProdutos() {
+        this.productService.totalProdutos().subscribe((response) => {
+            this.produtosCadastrados = response;
+        });
+    }
 
-  totalDeVendas() {
-    this.saleService.totalVendas().subscribe((response) => {
-      this.totalVendas = response;
-    })
-  }
+    totalProdutosAtivos() {
+        this.productService.totalProdutosAtivos().subscribe((response) => {
+            this.produtosAtivos = response;
+        });
+    }
 
-  totalProdutos() {
-    this.productService.totalProdutos().subscribe((response) => {
-      this.produtosCadastrados = response;
-    })
-  }
-
-  totalProdutosAtivos() {
-    this.productService.totalProdutosAtivos().subscribe((response) => {
-      this.produtosAtivos = response;
-    })
-  }
-
-  listSales() {
-    this.saleService.salesLimit().subscribe((response) => {
-      this.sales = response;
-    });
-  }
+    listSales() {
+        this.saleService.salesLimit().subscribe((response) => {
+            this.sales = response;
+        });
+    }
 }
